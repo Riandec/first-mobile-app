@@ -90,7 +90,6 @@ class MyWidget extends StatelessWidget {
       ),
       */
 
-      /*
       // Exercise III.
       body: Center(
         child: Stack(
@@ -140,13 +139,14 @@ class MyWidget extends StatelessWidget {
           ]
         )
       )
-      */
 
+      /*
       body: Center(
         child: Image.asset(
-          'tartaglia.png'
+          '1336e8b69fa18e9af82311443077cdf4.jpg'
         ),
       ),
+      */
     );
   }
 }
