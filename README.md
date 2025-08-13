@@ -1,4 +1,4 @@
-# first_application
+# first-mobile-application
 
 A new Flutter project.
 
