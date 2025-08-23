@@ -1,5 +1,8 @@
+import 'package:first_application/navigation/second_page.dart';
 import 'package:flutter/material.dart';
+import 'package:first_application/week2.dart';
 import 'package:first_application/week3.dart';
+import 'package:first_application/navigation/first_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +18,19 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        fontFamily: 'Prompt',
+        useMaterial3: true,
       ),
-      debugShowCheckedModeBanner: false,
-      home: MyWidget(),
+      debugShowCheckedModeBanner: true,
+      /*
+      // Named Route
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const FirstPage(),
+        '/second': (context) => const SecondPage(),
+      },
+      // If you use 'home', do not use 'initialRoute', its overlap
+      */
+      home: FirstPage(),
     );
   }
 }

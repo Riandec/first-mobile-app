@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Can create new file for each class
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
 
@@ -8,7 +9,7 @@ class MyWidget extends StatelessWidget {
     List<String> products = ['Apple', 'Sumsung', 'Oppo'];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Card', style: TextStyle(color: Colors.white,)),
+        title: Text('Profile Card', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
       ),
 
@@ -46,12 +47,14 @@ class MyWidget extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Container(
-              width: 300, 
-              height: 400, 
+              width: 300,
+              height: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 image: DecorationImage(
-                  image: AssetImage('images/abstract-pink-watercolor-background-pastel-soft-water-color-pattern-vector.jpg'),
+                  image: AssetImage(
+                    'images/abstract-pink-watercolor-background-pastel-soft-water-color-pattern-vector.jpg',
+                  ),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: [
@@ -60,8 +63,8 @@ class MyWidget extends StatelessWidget {
                     spreadRadius: 2,
                     blurRadius: 5,
                     offset: Offset(3, 3),
-                  )
-                ]
+                  ),
+                ],
               ),
             ),
             Positioned(
@@ -72,11 +75,13 @@ class MyWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage('images/435724916_1816309692203144_4943476744315204682_n.jpg'),
+                    image: AssetImage(
+                      'images/435724916_1816309692203144_4943476744315204682_n.jpg',
+                    ),
                     fit: BoxFit.cover,
-                  )
-                )
-              )
+                  ),
+                ),
+              ),
             ),
             Positioned(
               top: 340,
@@ -86,11 +91,13 @@ class MyWidget extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('images/barcode-transparent-resolution-format-1.png'),
+                    image: AssetImage(
+                      'images/barcode-transparent-resolution-format-1.png',
+                    ),
                     fit: BoxFit.cover,
-                  )
-                )
-              )
+                  ),
+                ),
+              ),
             ),
             Positioned(
               top: 260,
@@ -102,8 +109,8 @@ class MyWidget extends StatelessWidget {
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   height: 1.0,
-                )
-              )
+                ),
+              ),
             ),
             Positioned(
               top: 325,
@@ -114,8 +121,8 @@ class MyWidget extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 16,
                   height: 1.0,
-                )
-              )
+                ),
+              ),
             ),
             Positioned(
               top: 265,
@@ -126,8 +133,8 @@ class MyWidget extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 16,
                   height: 1.0,
-                )
-              )
+                ),
+              ),
             ),
             Positioned(
               top: 345,
@@ -138,12 +145,123 @@ class MyWidget extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 12,
                   height: 1.0,
-                )
-              )
+                ),
+              ),
             ),
           ],
-        )
+        ),
       ),
     );
   }
 }
+
+// stl + enter
+class GreetingWidget extends StatelessWidget {
+  final String name;
+  final Color colorBox;
+  const GreetingWidget({super.key, required this.name, required this.colorBox});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Stateless Widget'),
+        backgroundColor: Colors.grey,
+      ),
+      body: Center(
+        child: Container(
+          color: colorBox,
+          child: Text('Hello, $name', style: TextStyle(fontSize: 22)),
+        ),
+      ),
+    );
+  }
+}
+
+// Exercise II.
+// stf + enter
+class CounterWidget extends StatefulWidget {
+  const CounterWidget({super.key});
+
+  @override
+  State<CounterWidget> createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    counter = 23;
+  }
+
+  Color getColorBox() {
+    if (counter % 2 == 0) {
+      return const Color.fromARGB(255, 255, 136, 237);
+    } else {
+      return const Color.fromARGB(255, 153, 209, 255);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Stateful Widget Example'),
+        // backgroundColor: Colors.grey,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Counter Value:", style: TextStyle(fontSize: 22)),
+            Container(
+              color: getColorBox(),
+              child: Text(
+                "$counter",
+                style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      counter++;
+                    });
+                  },
+                  child: Text("+ Increment"),
+                ),
+                SizedBox(width: 10),
+
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      counter--;
+                    });
+                  },
+                  child: Text("- Decrement"),
+                ),
+                SizedBox(width: 10),
+
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      counter = 0;
+                    });
+                  },
+                  child: Text("Reset"),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
