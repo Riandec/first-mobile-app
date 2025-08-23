@@ -10,7 +10,7 @@ class SecondPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Second Page'),
-        backgroundColor: Colors.yellowAccent,
+        backgroundColor: Colors.yellowAccent, 
       ),
       body: Center(
         child: Column(
