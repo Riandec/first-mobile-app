@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:first_application/week2.dart';
-import 'package:first_application/week3.dart';
-import 'package:first_application/week4.dart';
-import 'package:first_application/navigation/first_page.dart';
-import 'package:first_application/navigation/second_page.dart';
+// import 'package:first_application/week2.dart';
+// import 'package:first_application/week3.dart';
+// import 'package:first_application/week4.dart';
+// import 'package:first_application/navigation/first_page.dart';
+// import 'package:first_application/navigation/second_page.dart';
 import 'package:first_application/api/api_example.dart';
 
 void main() {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       },
       // If you use 'home', do not use 'initialRoute', its overlap
       */
-      home: ApiExample(),
+      home: const ApiExample(),
     );
   }
 }

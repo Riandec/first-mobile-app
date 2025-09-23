@@ -11,7 +11,7 @@ class ApiExample extends StatefulWidget {
 }
 
 class _ApiExampleState extends State<ApiExample> {
-  User? userData;
+  List<User>? userList;
 
   @override
   void initState() {
@@ -22,23 +22,23 @@ class _ApiExampleState extends State<ApiExample> {
   void fetchUser() async {
     try {
       var response = await http
-          .get(Uri.parse('https://jsonplaceholder.typicode.com/users/1'));
+          .get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
       if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
+        List<dynamic> data = jsonDecode(response.body);
         setState(() {
-          userData = User.fromJson(data);
+          userList = data.map((item) => User.fromJson(item)).toList();
         });
-        print('Name: ${data["name"]}');
       } else {
         setState(() {
-          userData = null;
+          userList = null;
         });
         print('Failed to fetch data');
+        print('Status code: ${response.statusCode} Response body: ${response.body}');
       }
     } catch (e) {
       print('Error: $e');
       setState(() {
-          userData = null;
+          userList = null;
       });
     }
   }
@@ -47,19 +47,24 @@ class _ApiExampleState extends State<ApiExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('API Example'),
+        title: const Text('Simple API Call'),
       ),
       body: Center(
-        child: userData == null
-            ? const CircularProgressIndicator()
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Name: ${userData!.name}'),
-                  Text('Username: ${userData!.username}'),
-                  Text('Email: ${userData!.email}'),
-                ],
-            ),
+        child: ListView.separated(
+                itemCount: 10,
+                itemBuilder: (context, index){
+                  final user = userList![index];
+                  return ListTile(
+                    leading: Text(user.id.toString()),
+                    title: Text(user.name),
+                    subtitle: Text(user.email),
+                    trailing: Text('(${user.username})'),
+                  );
+                }, 
+                separatorBuilder: (context, index){
+                  return const Divider();
+                }, 
+              ),
       ),
     );
   }
