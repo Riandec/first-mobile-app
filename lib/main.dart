@@ -1,10 +1,12 @@
+import 'package:first_application/api/api_assignment.dart';
 import 'package:flutter/material.dart';
 // import 'package:first_application/week2.dart';
 // import 'package:first_application/week3.dart';
 // import 'package:first_application/week4.dart';
 // import 'package:first_application/navigation/first_page.dart';
 // import 'package:first_application/navigation/second_page.dart';
-import 'package:first_application/api/api_example.dart';
+// import 'package:first_application/api/api_example.dart';
+import 'package:first_application/api/api_assignment.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       },
       // If you use 'home', do not use 'initialRoute', its overlap
       */
-      home: const ApiExample(),
+      home: const ApiAssign(),
     );
   }
 }
