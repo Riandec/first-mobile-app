@@ -21,11 +21,7 @@ class _ApiAssignState extends State<ApiAssign> {
 
   void fetchData() async {
     try {
-      var response = await http.get(
-        Uri.parse(
-          'https://api.waqi.info/feed/here/?token=6098441d02eb4e942e7af57172aa969162c67982',
-        ),
-      );
+      var response = await http.get(Uri.parse('https://api.waqi.info/feed/here/?token=6098441d02eb4e942e7af57172aa969162c67982'));
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         Aqi aqi = Aqi.fromJson(data);
@@ -37,9 +33,7 @@ class _ApiAssignState extends State<ApiAssign> {
           aqiData = null;
         });
         print('Failed to fetch data');
-        print(
-          'Status code: ${response.statusCode} Response body: ${response.body}',
-        );
+        print('Status code: ${response.statusCode} Response body: ${response.body}');
       }
     } catch (e) {
       print('Error: $e');
@@ -53,23 +47,144 @@ class _ApiAssignState extends State<ApiAssign> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(height: 30, decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+          // location
+          Container(
+            padding: EdgeInsets.only(left:15),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.location_pin),
-                  SizedBox(width: 5),
-                  Text('${aqiData?.city}', style: TextStyle(fontSize: 20))
-                ],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.location_pin),
+                    SizedBox(width: 5),
+                    Text('${aqiData?.city}', style: TextStyle(fontSize: 20))
+                  ],
+                )
               )
             )
           ),
-          SizedBox(height: 30),
-          Container(height: 200, width: 400, decoration: BoxDecoration(border: Border.all(color: Colors.green))),
-          SizedBox(height: 30),
-          Container(height: 200, width: 400, decoration: BoxDecoration(border: Border.all(color: Colors.blue))),
+          SizedBox(height: 20),
+          // Temp
+          Stack(
+            children: [
+              Container(
+                height: 150, 
+                width: 350, 
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black), 
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment(-1.0, -1.0),
+                        padding: EdgeInsets.only(top: 10, left: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.red), 
+                        ),
+                        child: Text('Temperature', style: TextStyle(fontSize: 20))
+                      )
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment(-1.0, -1.0),
+                        padding: EdgeInsets.only(top: 10, left: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.orange), 
+                        ),
+                        child: Text('${aqiData?.temp} °c', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold))
+                      )
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment(-1.0, -1.0),
+                        padding: EdgeInsets.only(left: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.yellow), 
+                        ),
+                        child: Text('Partly Cloudy', style: TextStyle(fontSize: 20))
+                      )
+                    ),
+                  ],
+                )
+              ),
+              Positioned(
+                right: 10,
+                child: Image.asset('../assets/images/cloudy.png', height: 120)
+              )
+            ],
+          ),
+          SizedBox(height: 20),
+          // AQI
+          Stack(
+            children: [
+              Container(
+                height: 150, 
+                width: 350, 
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black), 
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment(-1.0, -1.0),
+                        padding: EdgeInsets.only(top: 10, left: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.red), 
+                        ),
+                        child: Text('Air Quality Index (AQI)', style: TextStyle(fontSize: 20))
+                      )
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment(-1.0,-1.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.orange), 
+                        ),
+                        child: ListTile(
+                          contentPadding: EdgeInsets.only(left: 20),
+                          title: Text('${aqiData?.aqi}', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+                          subtitle: Text('Good', style: TextStyle(fontSize: 15))
+                        )
+                      )
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment(-1.0, -1.0),
+                        padding: EdgeInsets.only(top: 10, left: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.yellow), 
+                        ),
+                      )
+                    ),
+                  ],
+                )
+              ),
+              Positioned(
+                top: 40,
+                right: 35,
+                child: Image.asset('../assets/images/good.png', height: 80)
+              )
+            ],
+          ),
+          SizedBox(height: 20),
+          // weather info
+          Container(
+            height: 150, 
+            width: 400, 
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black), 
+              borderRadius: BorderRadius.circular(15)
+            ),
+            // child:
+          ),
         ],
       ),
     );
