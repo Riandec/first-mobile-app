@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:first_application/models/aqi.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:weather_icons/weather_icons.dart';
 
 class ApiAssign extends StatefulWidget {
   const ApiAssign({super.key});
@@ -43,7 +44,7 @@ class _ApiAssignState extends State<ApiAssign> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Today's AQI & Temp")),
+      appBar: AppBar(title: const Text("Today's Weather & AQI")),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -75,7 +76,15 @@ class _ApiAssignState extends State<ApiAssign> {
                 width: 350, 
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black), 
-                  borderRadius: BorderRadius.circular(15)
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color.fromARGB(255, 159, 181, 255),
+                      Color.fromARGB(255, 171, 229, 255),
+                    ]
+                  )
                 ),
                 child: Column(
                   children: [
@@ -167,7 +176,11 @@ class _ApiAssignState extends State<ApiAssign> {
                             Expanded(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black), 
+                                  border: Border(
+                                    top: BorderSide(color: Colors.black),
+                                    right: BorderSide(color: Colors.black),
+                                    bottom: BorderSide(color: Colors.black)
+                                  ),
                                   color: Color.fromARGB(255,254,235,80)
                                 ),
                                 child: Text('100', style: TextStyle(fontSize: 20), textAlign: TextAlign.center)
@@ -176,7 +189,11 @@ class _ApiAssignState extends State<ApiAssign> {
                             Expanded(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black), 
+                                  border: Border(
+                                    top: BorderSide(color: Colors.black),
+                                    right: BorderSide(color: Colors.black),
+                                    bottom: BorderSide(color: Colors.black)
+                                  ),
                                   color: Color.fromARGB(255,253,178,76)
                                 ),
                                 child: Text('150', style: TextStyle(fontSize: 20), textAlign: TextAlign.center)
@@ -185,7 +202,11 @@ class _ApiAssignState extends State<ApiAssign> {
                             Expanded(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black), 
+                                  border: Border(
+                                    top: BorderSide(color: Colors.black),
+                                    right: BorderSide(color: Colors.black),
+                                    bottom: BorderSide(color: Colors.black)
+                                  ),
                                   color: Color.fromARGB(255,255,97,117)
                                 ),
                                 child: Text('200', style: TextStyle(fontSize: 20), textAlign: TextAlign.center)
@@ -194,7 +215,10 @@ class _ApiAssignState extends State<ApiAssign> {
                             Expanded(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black), 
+                                  border: Border(
+                                    top: BorderSide(color: Colors.black),
+                                    bottom: BorderSide(color: Colors.black)
+                                  ),
                                   color: Color.fromARGB(255,179,111,189)
                                 ),
                                 child: Text('300', style: TextStyle(fontSize: 20), textAlign: TextAlign.center)
@@ -231,7 +255,7 @@ class _ApiAssignState extends State<ApiAssign> {
           
           // weather info
           Container(
-            height: 150, 
+            height: 180, 
             width: 350, 
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black), 
@@ -244,18 +268,19 @@ class _ApiAssignState extends State<ApiAssign> {
                     alignment: Alignment(-1.0, -1.0),
                     padding: EdgeInsets.only(top: 5, left: 20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.red), 
+                      color: Color.fromARGB(255, 234, 234, 234),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)
+                      )
                     ),
                     child: Text('Weather Information', style: TextStyle(fontSize: 20))
                   )
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: Container(
                     alignment: Alignment(-1.0, -1.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.red), 
-                    ),
                     child: Column(
                       children: [
                         Expanded(
@@ -263,26 +288,53 @@ class _ApiAssignState extends State<ApiAssign> {
                             children: [
                               Expanded(
                                 child: Container(
+                                  padding: EdgeInsets.only(top: 2),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green), 
-
+                                    border: Border(
+                                      bottom: BorderSide(color: Color.fromARGB(255, 210, 210, 210), width: 0.5)
+                                    )
                                   ),
+                                  child: Column(
+                                    children: [
+                                      Text('Humidity', style: TextStyle(fontSize: 12)),
+                                      Icon(WeatherIcons.humidity),
+                                      Text('${aqiData?.humid} %', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                                    ],
+                                  )
                                 )
                               ),
                               Expanded(
                                 child: Container(
+                                  padding: EdgeInsets.only(top: 2),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green), 
-
+                                    border: Border(
+                                      bottom: BorderSide(color: Color.fromARGB(255, 210, 210, 210), width: 0.5)
+                                    )
                                   ),
+                                  child: Column(
+                                    children: [
+                                      Text('Air Pressure', style: TextStyle(fontSize: 12)),
+                                      Icon(Icons.compress),
+                                      Text('${aqiData?.press} hPa', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                                    ],
+                                  )
                                 )
                               ),
                               Expanded(
                                 child: Container(
+                                  padding: EdgeInsets.only(top: 2),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green), 
-
+                                    border: Border(
+                                      bottom: BorderSide(color: Color.fromARGB(255, 210, 210, 210), width: 0.5)
+                                    )
                                   ),
+                                  child: Column(
+                                    children: [
+                                      Text('Rain', style: TextStyle(fontSize: 12)),
+                                      Icon(WeatherIcons.rain),
+                                      Text('${aqiData?.rain} mm', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                                    ],
+                                  )
                                 )
                               )
                             ],
@@ -293,26 +345,38 @@ class _ApiAssignState extends State<ApiAssign> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green), 
-
-                                  ),
+                                  padding: EdgeInsets.only(top: 2),
+                                  child: Column(
+                                    children: [
+                                      Text('Wind', style: TextStyle(fontSize: 12)),
+                                      Icon(Icons.air),
+                                      Text('${aqiData?.wind} m/s', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                                    ],
+                                  )
                                 )
                               ),
                               Expanded(
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green), 
-
-                                  ),
+                                  padding: EdgeInsets.only(top: 2),
+                                  child: Column(
+                                    children: [
+                                      Text('PM 2.5', style: TextStyle(fontSize: 12)),
+                                      Icon(Icons.blur_on),
+                                      Text('${aqiData?.pm25} µg/m³', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                                    ],
+                                  )
                                 )
                               ),
                               Expanded(
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green), 
-
-                                  ),
+                                  padding: EdgeInsets.only(top: 2),
+                                  child: Column(
+                                    children: [
+                                      Text('PM 1.0', style: TextStyle(fontSize: 12)),
+                                      Icon(Icons.blur_on),
+                                      Text('${aqiData?.pm10} µg/m³', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                                    ],
+                                  )
                                 )
                               )
                             ],
@@ -325,6 +389,9 @@ class _ApiAssignState extends State<ApiAssign> {
               ]
             )
           )
+        
+          // button
+          
         ]
       )
     );
