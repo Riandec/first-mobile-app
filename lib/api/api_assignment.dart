@@ -37,6 +37,9 @@ class _ApiAssignState extends State<ApiAssign> {
         print('Status code: ${response.statusCode} Response body: ${response.body}');
       }
     } catch (e) {
+      setState(() {
+        aqiData = null;
+      });
       print('Error: $e');
     }
   }
@@ -130,7 +133,15 @@ class _ApiAssignState extends State<ApiAssign> {
                 width: 350, 
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black), 
-                  borderRadius: BorderRadius.circular(15)
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color.fromARGB(255, 191, 255, 135),
+                      Color.fromARGB(255, 242, 255, 155),
+                    ]
+                  )
                 ),
                 child: Column(
                   children: [
@@ -388,10 +399,18 @@ class _ApiAssignState extends State<ApiAssign> {
                 ),
               ]
             )
-          )
-        
+          ),
+          SizedBox(height: 20),
+
           // button
-          
+          ElevatedButton.icon(
+            onPressed: fetchData, 
+            label: Text('Refresh', style: TextStyle(color: Colors.black),),
+            icon: Icon(Icons.refresh, color: Colors.black),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 234, 234, 234)),
+            ),
+          )
         ]
       )
     );
