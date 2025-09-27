@@ -1,3 +1,4 @@
+import 'package:first_application/models/aqi_display.dart';
 import 'package:flutter/material.dart';
 import 'package:first_application/models/aqi.dart';
 import 'package:http/http.dart' as http;
@@ -46,6 +47,7 @@ class _ApiAssignState extends State<ApiAssign> {
 
   @override
   Widget build(BuildContext context) {
+    final aqiDisplay = AqiDisplay(aqiData!.aqi);
     return Scaffold(
       appBar: AppBar(title: const Text("Today's Weather & AQI")),
       body: Column(
@@ -84,8 +86,9 @@ class _ApiAssignState extends State<ApiAssign> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color.fromARGB(255, 159, 181, 255),
+                      Color.fromARGB(255, 142, 168, 255),
                       Color.fromARGB(255, 171, 229, 255),
+                      Color.fromARGB(255, 255, 255, 255),
                     ]
                   )
                 ),
@@ -134,14 +137,7 @@ class _ApiAssignState extends State<ApiAssign> {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black), 
                   borderRadius: BorderRadius.circular(15),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color.fromARGB(255, 191, 255, 135),
-                      Color.fromARGB(255, 242, 255, 155),
-                    ]
-                  )
+                  gradient: aqiDisplay.color
                 ),
                 child: Column(
                   children: [
@@ -161,7 +157,7 @@ class _ApiAssignState extends State<ApiAssign> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('${aqiData?.aqi}', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
-                            Text('Good', style: TextStyle(fontSize: 20)),
+                            Text(aqiDisplay.level , style: TextStyle(fontSize: 20)),
                           ],
                         )
                       )
@@ -256,9 +252,9 @@ class _ApiAssignState extends State<ApiAssign> {
                 )
               ),
               Positioned(
-                top: 45,
+                top: 40,
                 right: 30,
-                child: Image.asset('../assets/images/good.png', height: 90)
+                child: Image.asset(aqiDisplay.imagePath, height: 90)
               )
             ],
           ),
