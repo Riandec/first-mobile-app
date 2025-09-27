@@ -4,7 +4,7 @@ class AqiDisplay {
   late final String level, imagePath;
   late final LinearGradient color;
 
-  AqiDisplay (int aqiValue){
+  AqiDisplay (double aqiValue){
     if (aqiValue <= 50) {
       level = 'Good';
       imagePath = '../assets/images/good.png';
