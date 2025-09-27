@@ -1,16 +1,7 @@
 # first-mobile-application
+In this project have WAQI API call assignment that designed UX/UI by myself
+Here's the result page
+<img src="aqi-assignment-650710572.png">
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Build by
+Pitchaya Pimmahasiri, CSSU 4th year
