@@ -3,7 +3,7 @@ This project is a simple mobile application built with Flutter to display real-t
 
 The app fetches data from the [World Air Quality Index (WAQI) API](https://aqicn.org/api/) and presents it through a unique, self-designed user interface that changes based on the current AQI level.
 
-An API token from the [WAQI Platform](https://aqicn.org/data-platform/token/).
+An API token from the [WAQI Data Platform](https://aqicn.org/data-platform/token/).
 
 Here are the screenshots of the application 
 
