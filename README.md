@@ -1,16 +1,12 @@
-# first-mobile-application
+# First Mobile Application (517324)
+This project is a simple mobile application built with Flutter to display real-time air quality data. It was developed as a personal assignment to practice API integration and custom UI/UX design.
 
-A new Flutter project.
+The app fetches data from the [World Air Quality Index (WAQI) API](https://aqicn.org/api/)
 
-## Getting Started
+The primary files related to this assignment are:
+-   **API Service:** `lib/api/api_assignment.dart`
+-   **Data Model:** `lib/models/aqi.dart` & `lib/models/aqi_display.dart`
 
-This project is a starting point for a Flutter application.
+Here are the screenshots of the application 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="assets/images/aqi-assignment-650710572.png" height="500">
