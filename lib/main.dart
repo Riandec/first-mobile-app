@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 // import 'package:first_application/navigation/first_page.dart';
 // import 'package:first_application/navigation/second_page.dart';
 // import 'package:first_application/api/api_example.dart';
-import 'package:first_application/api/api_assignment.dart';
+// import 'package:first_application/api/api_assignment.dart';
+import 'package:first_application/api/restapi_week5.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       },
       // If you use 'home', do not use 'initialRoute', its overlap
       */
-      home: const ApiAssign(),
+      home: const RestApi(),
     );
   }
 }
