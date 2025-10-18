@@ -1,7 +1,8 @@
-import 'package:first_application/components/custom_counter.dart';
-import 'package:first_application/components/profile_card.dart';
 import 'package:flutter/material.dart';
 import 'components/custom_card.dart';
+import 'components/custom_counter.dart';
+import 'components/profile_card.dart';
+import 'components/light_deco.dart';
 
 class Week6 extends StatelessWidget {
   const Week6({super.key});
@@ -254,7 +255,6 @@ class _AnimationExampleState extends State<AnimationExample> {
         ],
       )
       */
-
     );
   }
 }
@@ -268,11 +268,73 @@ class TrafficLight extends StatefulWidget {
 }
 
 class _TrafficLightState extends State<TrafficLight> {
+  String _currentLight = 'red';
+  double _redOpacity = 1.0;
+  double _yellowOpacity = 0.3;
+  double _greenOpacity = 0.3;
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  void changeLight () {
+    if (_currentLight == 'red') {
+      _currentLight = 'yellow';
+      _redOpacity = 0.3;
+      _yellowOpacity = 1.0;
+      _greenOpacity = 0.3;
+    } else if (_currentLight == 'yellow') {
+      _currentLight = 'green';
+      _redOpacity = 0.3;
+      _yellowOpacity = 0.3;
+      _greenOpacity = 1.0;
+    } else {
+      _currentLight = 'red';
+      _redOpacity = 1.0;
+      _yellowOpacity = 0.3;
+      _greenOpacity = 0.3;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Traffic Light Animation'),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple,
+      ),
       body: Center(
-        
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            LightDeco(
+              opacity: _redOpacity,
+              lightColor: Colors.red,
+            ),
+            SizedBox(height: 15),
+            LightDeco(
+              opacity: _yellowOpacity,
+              lightColor: Colors.yellow,
+            ),
+            SizedBox(height: 15),
+            LightDeco(
+              opacity: _greenOpacity,
+              lightColor: Colors.green,
+            ),
+            SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  changeLight();
+                });
+              }, 
+              child: Text('เปลี่ยนไฟ')
+            )
+          ],
+        )
       )
     );
   }
