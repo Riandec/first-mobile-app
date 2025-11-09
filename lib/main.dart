@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 // import 'package:first_application/api/api_example.dart';
 // import 'package:first_application/api/api_assignment.dart';
 // import 'package:first_application/api/restapi_week5.dart';
-import 'week6.dart';
+// import 'week6.dart';
+import 'answer1.dart';
+import 'answer2.dart';
+import 'answer3.dart';
 import 'package:first_application/constants/theme_data.dart';
 
 void main() {
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
       },
       // If you use 'home', do not use 'initialRoute', its overlap
       */
-      home: const TrafficLight(),
+      home: const Answer1(),
     );
   }
 }
