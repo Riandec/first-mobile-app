@@ -23,7 +23,7 @@ class _ApiAssignState extends State<ApiAssign> {
 
   void fetchData() async {
     try {
-      var response = await http.get(Uri.parse('https://api.waqi.info/feed/here/?token=6098441d02eb4e942e7af57172aa969162c67982'));
+      var response = await http.get(Uri.parse('https://api.waqi.info/feed/here/?token='));
       print('Status code: ${response.statusCode} Response body: ${response.body}');
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
